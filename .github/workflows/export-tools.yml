@@ -21,7 +21,7 @@ jobs:
           mkdir -p exported-tools
           cp "$ANDROID_HOME/build-tools/35.0.0/zipalign" exported-tools/
           cp "$ANDROID_HOME/build-tools/35.0.0/apksigner" exported-tools/
-          cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" exported-tools/
+          cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" exported-tools/\n          cp "$ANDROID_HOME/build-tools/35.0.0/lib64/libc++.so" exported-tools/ || true
           chmod +x exported-tools/zipalign exported-tools/apksigner
       - uses: actions/upload-artifact@v4
         with:
