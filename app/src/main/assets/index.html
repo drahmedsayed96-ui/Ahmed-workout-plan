@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#132a46">
+<title>Workout Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="appbar">
+  <div><div class="eyebrow">BODY RECOMPOSITION</div><h1>4-Week Workout Tracker</h1></div>
+  <button id="themeBtn" class="iconbtn">◐</button>
+</header>
+<main>
+<section id="homeView" class="view active">
+  <div class="hero">
+    <div><span class="pill">4 weeks</span><span class="pill">16 workouts</span><h2>Build muscle. Reduce fat. Track every set.</h2><p>Your monthly training plan with offline workout logging.</p></div>
+    <div class="ring" id="ring"><span id="ringText">0%</span></div>
+  </div>
+  <div class="sectionhead"><h3>Training week</h3><select id="weekSelect"></select></div>
+  <div id="weekSummary" class="summarygrid"></div>
+  <div id="sessionList" class="sessionlist"></div>
+</section>
+
+<section id="workoutView" class="view">
+  <button class="backbtn" id="backBtn">← Back</button>
+  <div id="workoutHeader"></div>
+  <div id="exerciseList"></div>
+  <button id="completeWorkout" class="primary stickyComplete">Mark workout complete</button>
+</section>
+
+<section id="progressView" class="view">
+  <div class="sectionhead"><h2>Progress</h2></div>
+  <div id="progressCards" class="summarygrid"></div>
+  <div class="panel">
+    <h3>Body-weight log</h3>
+    <div class="weightrow"><input type="date" id="weightDate"><input type="number" step="0.1" id="weightValue" placeholder="kg"><button class="primary small" id="addWeight">Add</button></div>
+    <div id="weightList"></div>
+  </div>
+  <div class="panel"><h3>Local storage</h3><p class="muted">Workout history is stored on this phone.</p><button class="danger" id="resetBtn">Reset all data</button></div>
+</section>
+</main>
+<nav class="bottomnav"><button data-view="homeView" class="active">⌂<span>Plan</span></button><button data-view="progressView">▥<span>Progress</span></button></nav>
+<div id="toast" class="toast"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
