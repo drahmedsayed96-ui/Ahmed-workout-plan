@@ -1,4 +1,4 @@
-name: Build APK
+name: Build Animated Workout APK
 on:
   workflow_dispatch:
   push:
@@ -15,6 +15,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Generate 96 animated exercise GIFs
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 tools/generate_gifs.py
+          test "$(find app/src/main/assets/gifs -name 'ex*.gif' | wc -l)" -eq 96
+
       - name: Prepare Android SDK
         run: |
           export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/cmdline-tools/16.0/bin:$ANDROID_HOME/platform-tools:$PATH"
@@ -25,11 +31,11 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
-      - name: Build debug APK
+      - name: Build installable debug APK
         run: gradle assembleDebug --stacktrace
 
       - uses: actions/upload-artifact@v4
         with:
-          name: WorkoutTracker-APK
+          name: Ahmed-Workout-Animated-v3
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
