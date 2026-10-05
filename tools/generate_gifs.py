@@ -2,7 +2,7 @@ from PIL import Image,ImageDraw,ImageFont
 from pathlib import Path
 import json,re,math
 ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"app/src/main/assets/data.js"; OUT=ROOT/"app/src/main/assets/gifs"; OUT.mkdir(parents=True,exist_ok=True)
-s=DATA.read_text(); s=re.sub(r"^window\\.WORKOUT_PLAN\\s*=\\s*","",s.strip()); s=s[:-1] if s.endswith(";") else s
+s=DATA.read_text(); s=re.sub(r"^window\.WORKOUT_PLAN\s*=\s*","",s.strip()); s=s[:-1] if s.endswith(";") else s
 E=[e for w in json.loads(s) for e in w["exercises"]]
 W,H=320,220; BG=(247,249,252); INK=(20,42,70); ACC=(47,117,200); EQ=(70,78,90); FLOOR=(216,224,234)
 try:F=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",12);B=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",16)
