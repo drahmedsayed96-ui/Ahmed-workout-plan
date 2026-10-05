@@ -1,4 +1,4 @@
-name: Build Animated Workout APK
+name: Build Workout Video APK
 on:
   workflow_dispatch:
   push:
@@ -15,11 +15,18 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Generate 96 animated exercise GIFs
+      - name: Generate 96 exercise technique videos
         run: |
           python3 -m pip install --quiet pillow
           python3 tools/generate_gifs.py
-          test "$(find app/src/main/assets/gifs -name 'ex*.gif' | wc -l)" -eq 96
+          command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y ffmpeg; }
+          mkdir -p app/src/main/assets/videos
+          for f in app/src/main/assets/gifs/ex*.gif; do
+            name="$(basename "$f" .gif)"
+            ffmpeg -loglevel error -y -i "$f" -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p -movflags +faststart -an "app/src/main/assets/videos/$name.mp4"
+          done
+          test "$(find app/src/main/assets/videos -name 'ex*.mp4' | wc -l)" -eq 96
+          rm -rf app/src/main/assets/gifs
 
       - name: Prepare Android SDK
         run: |
@@ -31,11 +38,11 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
-      - name: Build installable debug APK
+      - name: Build installable APK
         run: gradle assembleDebug --stacktrace
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Ahmed-Workout-Animated-v3
+          name: Ahmed-Workout-Videos-v4
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error

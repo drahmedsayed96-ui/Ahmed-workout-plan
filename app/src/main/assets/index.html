@@ -4,7 +4,7 @@
 <header class="appbar"><div><div class="eyebrow">BODY RECOMPOSITION</div><h1>4-Week Recomposition Tracker</h1></div><button class="iconbtn" id="themeBtn" aria-label="Toggle theme">◐</button></header>
 <main>
 <section id="homeView" class="view active">
-  <div class="hero"><div><span class="pill">78.9 kg start</span><span class="pill">18.7% body fat</span><h2>Build muscle. Reduce fat. Track every set.</h2><p>Your complete 4-week training + nutrition plan with animated exercise technique demos and offline logging.</p></div><div class="ring" id="ring"><span id="ringText">0%</span></div></div>
+  <div class="hero"><div><span class="pill">78.9 kg start</span><span class="pill">18.7% body fat</span><h2>Build muscle. Reduce fat. Track every set.</h2><p>Your complete 4-week training + nutrition plan with video exercise technique demos and offline logging.</p></div><div class="ring" id="ring"><span id="ringText">0%</span></div></div>
   <div class="sectionhead"><h3>Training weeks</h3><select id="weekSelect"></select></div>
   <div id="weekSummary" class="summarygrid"></div>
   <div id="sessionList" class="sessionlist"></div>
@@ -36,6 +36,6 @@
 </section>
 </main>
 <nav class="bottomnav"><button data-view="homeView" class="active">⌂<span>Plan</span></button><button data-view="nutritionView">◉<span>Nutrition</span></button><button data-view="progressView">▥<span>Progress</span></button></nav>
-<div id="techniqueModal" class="technique-modal" onclick="if(event.target===this)closeTechnique()"><div class="technique-card"><button class="technique-close" onclick="closeTechnique()">×</button><img id="techniqueLarge" alt="Exercise technique animation"><h3 id="techniqueTitle"></h3><p class="muted">Use the loop to follow the start and finish positions. Keep the motion controlled and pain-free.</p></div></div><div id="toast" class="toast"></div>
+<div id="techniqueModal" class="technique-modal" onclick="if(event.target===this)closeTechnique()"><div class="technique-card"><button class="technique-close" onclick="closeTechnique()">×</button><video id="techniqueLarge" muted autoplay loop playsinline controls aria-label="Exercise technique video"></video><h3 id="techniqueTitle"></h3><p class="muted">Use the looping video to follow the movement from start to finish. Keep the motion controlled and pain-free.</p></div></div><div id="toast" class="toast"></div>
 <script src="data.js"></script><script src="nutrition.js"></script><script src="app.js"></script>
 </body></html>
