@@ -310,7 +310,7 @@ public class CoachActivity extends ComponentActivity {
 
         float left = measure(pose, true);
         float right = measure(pose, false);
-        float current = Float.isNaN(left) ? right : (Float.isNaN(right) ? left : (left + right) / 2f));
+        float current = Float.isNaN(left) ? right : (Float.isNaN(right) ? left : (left + right) / 2f);
         if (Float.isNaN(current)) {
             showMessage("خلي المفاصل المطلوبة باينة في الكاميرا، وجرّب تصور من الجنب.");
             return;
