@@ -299,6 +299,9 @@
     if(!state.profile){profileBadge.textContent='جهّز خطتك';return;}
     const p=state.profile,split=effectiveSplit(p);
     profileBadge.textContent=GOALS.find(g=>g[0]===p.goal)[2]+' · '+splitLabel[split]+' · '+p.days.length+' أيام';
+    document.getElementById('heroWeight').textContent=h(p.weight)+' kg';
+    document.getElementById('heroBodyFat').textContent=p.fat!==''?h(p.fat)+'% body fat':'InBody optional';
+    document.getElementById('heroGoal').textContent=GOALS.find(g=>g[0]===p.goal)[2];
   }
   function openWizard(){
     draft=JSON.parse(JSON.stringify(state.profile||baseProfile()));
