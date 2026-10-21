@@ -312,6 +312,9 @@
     if(!state.profile){profileBadge.textContent='جهّز خطتك';return;}
     const p=state.profile,split=effectiveSplit(p);
     profileBadge.textContent=GOALS.find(g=>g[0]===p.goal)[2]+' · '+splitLabel[split]+' · '+p.days.length+' أيام';
+    const stamp=p.inbodyHistory?.length?p.inbodyHistory[p.inbodyHistory.length-1].date:p.scanDate;
+    const ageDays=stamp?Math.floor((Date.now()-new Date(stamp+'T12:00:00').getTime())/86400000):0;
+    if(ageDays>42)profileBadge.textContent+=' · يفضّل تحديث بيانات InBody';
     document.getElementById('heroWeight').textContent=h(p.weight)+' kg';
     document.getElementById('heroBodyFat').textContent=p.fat!==''?h(p.fat)+'% body fat':'InBody optional';
     document.getElementById('heroGoal').textContent=GOALS.find(g=>g[0]===p.goal)[2];
@@ -323,6 +326,11 @@
     renderWizard();
   }
   window.openPersonalizedSetup=openWizard;
+  document.getElementById('speakNutritionBtn').addEventListener('click',()=>{
+    if(!state.profile)return speak('كمّل إعداد بياناتك عشان أشرح لك خطة أكلك.');
+    const t=targets(state.profile);
+    speak('دي خطة أكلك اللي مبنية على تفضيلاتك. يوم التمرين حوالي '+t.training.kcal+' سعرة، ويوم الراحة حوالي '+t.rest.kcal+' سعرة. البروتين حوالي '+t.training.protein+' جرام يومياً. دي تقديرات، وليست كميات محسوبة لكل طبق. حدث إن بودي لو قياساتك اتغيرت.');
+  });
   editButton.addEventListener('click',openWizard);
   document.getElementById('editInbodyBtn').addEventListener('click',()=>{
     openWizard();wizardStep=1;renderWizard();
