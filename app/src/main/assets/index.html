@@ -5,6 +5,7 @@
 <main>
 <section id="homeView" class="view active">
   <div class="hero"><div><span class="pill">78.9 kg start</span><span class="pill">18.7% body fat</span><h2>Build muscle. Reduce fat. Track every set.</h2><p>Your complete 4-week training + nutrition plan with video exercise technique demos and offline logging.</p></div><div class="ring" id="ring"><span id="ringText">0%</span></div></div>
+  <div class="personal-quick"><div><b>خطتك الشخصية</b><p id="profileBadge">جهّز خطتك</p></div><button class="secondary" id="editProfileBtn" type="button">⚙️ تحديث الهدف والخطة</button></div>
   <div class="sectionhead"><h3>Training weeks</h3><select id="weekSelect"></select></div>
   <div id="weekSummary" class="summarygrid"></div>
   <div id="sessionList" class="sessionlist"></div>
@@ -32,10 +33,11 @@
   <div class="sectionhead"><h2>Progress</h2></div>
   <div id="progressCards" class="summarygrid"></div>
   <div class="panel"><h3>Body-weight log</h3><div class="weightrow"><input type="date" id="weightDate"><input type="number" step="0.1" id="weightValue" placeholder="kg"><button class="primary small" id="addWeight">Add</button></div><div id="weightList"></div></div>
+  <div class="panel"><h3>InBody · تحديث القياسات</h3><p class="muted">سجل قياساتك الجديدة يدوياً لتحديث اقتراحات الأكل والتمرين. لن تخرج من جهازك.</p><div id="inbodyHistory"></div><button class="secondary" id="editInbodyBtn" type="button">📝 تحديث بيانات InBody</button></div>
   <div class="panel"><h3>Data backup</h3><p class="muted">Your workout and nutrition tracking data is stored on this phone. Export a backup whenever you want.</p><div class="buttonrow"><button class="secondary" id="exportBtn">Export data</button><label class="secondary filelabel">Import data<input type="file" id="importFile" accept="application/json"></label><button class="danger" id="resetBtn">Reset</button></div></div>
 </section>
 </main>
 <nav class="bottomnav"><button data-view="homeView" class="active">⌂<span>Plan</span></button><button data-view="nutritionView">◉<span>Nutrition</span></button><button data-view="progressView">▥<span>Progress</span></button></nav>
-<div id="techniqueModal" class="technique-modal" onclick="if(event.target===this)closeTechnique()"><div class="technique-card"><button class="technique-close" onclick="closeTechnique()">×</button><video id="techniqueLarge" muted autoplay loop playsinline controls aria-label="Exercise technique video"></video><h3 id="techniqueTitle"></h3><p class="muted">Use the looping video to follow the movement from start to finish. Keep the motion controlled and pain-free.</p></div></div><div id="toast" class="toast"></div>
-<script src="data.js"></script><script src="nutrition.js"></script><script src="app.js"></script>
+<div id="personalizeOverlay" class="wizard-overlay" role="dialog" aria-label="إعداد خطة شخصية بالعربي" aria-modal="true" aria-hidden="true"><div class="wizard-card" id="personalizeContent"></div></div><div id="toast" class="toast"></div>
+<script src="data.js"></script><script src="nutrition.js"></script><script src="app.js"></script><script src="personalization.js"></script>
 </body></html>
