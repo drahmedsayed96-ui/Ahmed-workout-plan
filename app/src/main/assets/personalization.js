@@ -216,6 +216,14 @@
     const names={fullA:'Full Body A',fullB:'Full Body B',upperA:'Upper A',upperB:'Upper B',
       lowerA:'Lower A',lowerB:'Lower B',push:'Push',pull:'Pull',legs:'Legs',
       chestBack:'Chest & Back',shouldersArms:'Shoulders & Arms'};
+    const beginnerAlternatives = {
+      'ex001':'ex049', 'ex025':'ex049', 'ex054':'ex049', 'ex073':'ex049',
+      'ex007':'ex079', 'ex031':'ex079', 'ex055':'ex079',
+      'ex019':'ex091', 'ex043':'ex091', 'ex067':'ex091',
+      'ex056':'ex094', 'ex074':'ex002',
+      'ex046':'ex010'
+    };
+    const byId=new Map(seedPlan.flatMap(s=>s.exercises).map(e=>[e.id,e]));
     const out=[];
     for(let w=0;w<4;w++){
       days.forEach((day,i)=>{
@@ -223,7 +231,12 @@
         const exercises=sessionExercises(w,style,i);
         out.push({id:`personal_${split}_${w+1}_${day}_${i}`,week:`Week ${w+1}`,
           weekNum:w+1,day,title:names[style],focus:splitLabel[split]+' · '+GOALS.find(g=>g[0]===p.goal)[2],
-          exercises:exercises.map(e=>({...e, sets:p.experience==='beginner'?Math.min(e.sets,3):e.sets}))});
+          exercises:exercises.map(e=>{
+            const easier=p.experience==='beginner'&&beginnerAlternatives[e.id]
+              ?byId.get(beginnerAlternatives[e.id])||e:e;
+            const sets=p.experience==='beginner'?Math.min(easier.sets,3):easier.sets;
+            return {...easier,sets,target:p.experience==='beginner'?sets+' x 8-12':easier.target};
+          })});
       });
     }
     return out;
