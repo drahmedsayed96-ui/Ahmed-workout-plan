@@ -61,3 +61,5 @@ body.dark{--bg:#0e1724;--card:#172335;--text:#edf4ff;--muted:#9fb0c5;--brand:#8f
 .wizard-buttons button{min-height:48px}
 .wizard-buttons #wizardNext{flex:1}
 @media(max-width:530px){.wizard-fields,.choice-grid{grid-template-columns:1fr}.personal-quick{flex-direction:column;align-items:stretch}}
+
+.voice-plan-btn{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:white;border-radius:12px;padding:9px 12px;margin:10px 0 8px;min-height:42px;font-size:12px;font-weight:800}
