@@ -325,6 +325,19 @@
     wizardStep=0;
     renderWizard();
   }
+  window.onPersonalProfileImported=function(){
+    if(state.profile){
+      applyProfile();
+      updateBadge();
+    } else {
+      openWizard();
+    }
+  };
+  window.onWorkoutDataReset=function(){
+    // Reset removes personal metrics as well as exercise logs; restart consent/setup.
+    PLAN.splice(0,PLAN.length,...seedPlan);
+    openWizard();
+  };
   window.openPersonalizedSetup=openWizard;
   document.getElementById('speakNutritionBtn').addEventListener('click',()=>{
     if(!state.profile)return speak('كمّل إعداد بياناتك عشان أشرح لك خطة أكلك.');
