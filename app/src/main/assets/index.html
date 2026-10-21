@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#132a46"><title>4-Week Workout Tracker</title><link rel="stylesheet" href="style.css"></head>
 <body>
-<header class="appbar"><div><div class="eyebrow">BODY RECOMPOSITION</div><h1>4-Week Recomposition Tracker</h1></div><button class="iconbtn" id="themeBtn" aria-label="Toggle theme">◐</button></header>
+<header class="appbar"><div><div class="eyebrow">BODY RECOMPOSITION</div><h1>4-Week Personal Workout Planner</h1></div><button class="iconbtn" id="themeBtn" aria-label="Toggle theme">◐</button></header>
 <main>
 <section id="homeView" class="view active">
-  <div class="hero"><div><span class="pill">78.9 kg start</span><span class="pill">18.7% body fat</span><h2>Build muscle. Reduce fat. Track every set.</h2><p>Your complete 4-week training + nutrition plan with video exercise technique demos and offline logging.</p></div><div class="ring" id="ring"><span id="ringText">0%</span></div></div>
+  <div class="hero"><div><span class="pill" id="heroWeight">Your weight</span><span class="pill" id="heroBodyFat">Body fat</span><h2 id="heroGoal">Build your personal fitness plan</h2><p>Goal-focused training, food preferences, Arabic coaching, and real exercise video links.</p></div><div class="ring" id="ring"><span id="ringText">0%</span></div></div>
   <div class="personal-quick"><div><b>خطتك الشخصية</b><p id="profileBadge">جهّز خطتك</p></div><button class="secondary" id="editProfileBtn" type="button">⚙️ تحديث الهدف والخطة</button></div>
   <div class="sectionhead"><h3>Training weeks</h3><select id="weekSelect"></select></div>
   <div id="weekSummary" class="summarygrid"></div>
@@ -19,8 +19,8 @@
 <section id="nutritionView" class="view">
   <div class="nutrition-hero">
     <div class="eyebrow">PERSONALIZED NUTRITION</div>
-    <h2>Recomposition meal plan</h2>
-    <p>High protein, moderate calorie deficit, more carbohydrates on lifting days.</p>
+    <h2>Personalized meal plan</h2>
+    <p>Adjusts to your goals, training days, and preferred foods. Estimates only.</p>
     <div id="nutritionTargets" class="macrogrid"></div>
   </div>
   <div class="sectionhead"><h3>Nutrition week</h3><select id="nutritionWeekSelect"></select></div>
