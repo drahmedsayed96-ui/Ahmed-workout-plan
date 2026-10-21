@@ -2,7 +2,7 @@ name: Build Workout Video APK
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ main, 'feature/arabic-ai-form-coach' ]
 
 jobs:
   build:
@@ -43,6 +43,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Ahmed-Workout-Videos-v4
+          name: Ahmed-Workout-AI-Coach-Arabic-v5
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
